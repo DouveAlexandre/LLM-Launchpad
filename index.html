@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Launchpad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#6366f1',
+                            dark: '#818cf8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200 h-screen overflow-hidden">
+    <div class="h-screen flex flex-col">
+        <!-- Header -->
+        <header
+            class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 z-50 flex-none">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-8">
+                        <!-- Logo -->
+                        <div class="flex items-center logo-container">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-r from-primary-light to-violet-500 rounded-lg flex items-center justify-center">
+                                <span class="text-white font-bold text-xl">LL</span>
+                            </div>
+                            <h1 class="ml-3 text-2xl font-bold logo-text">
+                                LLM Launchpad
+                            </h1>
+                        </div>
+
+                        <!-- Navigation -->
+                        <nav class="hidden md:flex items-center space-x-6">
+                            <a href="https://github.com/douvealexandre/LLM-Launchpad/blob/main/README.md"
+                                class="text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
+                                Documentation
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- Right Section -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Theme Toggle -->
+                        <button id="theme-toggle" class="p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors 
+                                       flex items-center space-x-2 text-gray-600 dark:text-gray-300">
+                            <span class="text-sm hidden sm:inline">Theme</span>
+                            <svg class="w-5 h-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                            </svg>
+                            <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                        </button>
+
+                        <!-- GitHub Link -->
+                        <a href="https://github.com/douvealexandre/LLM-Launchpad"
+                            class="p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-300"
+                            title="View on GitHub">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex overflow-hidden">
+            <!-- Sidebar -->
+            <div
+                class="w-64 flex-none bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+                <!-- New Chat Button -->
+                <div class="p-4">
+                    <button id="new-chat-btn" class="w-full p-3 rounded-lg bg-primary-light dark:bg-primary-dark text-white 
+                                   hover:opacity-90 transition-opacity flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        <span>New Chat</span>
+                    </button>
+                </div>
+
+                <!-- Chat Tabs -->
+                <div id="tabs-container" class="flex-1 overflow-y-auto p-2 space-y-2">
+                    <!-- Tabs will be inserted here -->
+                </div>
+
+                <!-- Settings Button -->
+                <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                    <button id="settings-btn" class="w-full p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 
+                                   text-gray-700 dark:text-gray-300 transition-colors flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span>Settings</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div class="flex-1 flex flex-col bg-white dark:bg-gray-900">
+                <!-- Settings Modal -->
+                <div id="settings-modal"
+                    class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-lg w-full mx-4 shadow-xl transform transition-all duration-200 scale-95 opacity-0">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300">
+                                Chat Settings
+                            </h3>
+                            <div class="flex items-center space-x-4">
+                                <button id="lock-button" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors
+                                               text-gray-600 dark:text-gray-400 flex items-center space-x-2">
+                                    <span class="text-sm lock-status">Unlocked</span>
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    </svg>
+                                </button>
+                                <button id="close-settings"
+                                    class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Provider Selection -->
+                            <div class="relative">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Provider
+                                </label>
+                                <select id="provider-select" class="w-full p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl 
+                                        shadow-sm focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent
+                                        dark:text-gray-300 transition-colors">
+                                    <option value="">Select a provider</option>
+                                </select>
+                            </div>
+
+                            <!-- Model Selection será inserido aqui dinamicamente -->
+
+                            <!-- API Key Input -->
+                            <div class="relative">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    API Key
+                                </label>
+                                <input type="password" id="api-key" class="w-full p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl
+                                              shadow-sm focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent
+                                              dark:text-gray-300 transition-colors" placeholder="Enter your API Key">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Interface -->
+                <div id="chats-container" class="flex-1 flex flex-col overflow-hidden">
+                    <!-- Messages Area -->
+                    <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-4">
+                        <!-- Welcome Message -->
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-r from-primary-light to-violet-500 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm max-w-[80%]">
+                                <p class="text-gray-700 dark:text-gray-300">
+                                    Hello! I'm your AI assistant. Select a provider and enter your API key to start our
+                                    conversation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Input Area -->
+                    <div class="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 flex-none">
+                        <div class="flex space-x-4">
+                            <input type="text" id="message-input" class="flex-1 p-4 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-xl
+                                          focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent
+                                          dark:text-gray-300 transition-colors" placeholder="Type your message...">
+                            <button id="send-button"
+                                class="px-6 py-4 bg-gradient-to-r from-primary-light to-violet-500 hover:opacity-90
+                                           text-white font-medium rounded-xl transition-all duration-200 flex items-center space-x-2">
+                                <span>Send</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+    <script>
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Check for saved theme preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+
+</html>

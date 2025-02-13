@@ -1,0 +1,540 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+.chat-message {
+    word-wrap: break-word;
+    margin-bottom: 1rem;
+    animation: slideIn 0.3s ease-out;
+}
+
+#chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.dark #chat-messages::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+
+#chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.dark #chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.glass-effect {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+input:focus, select:focus, button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.dark input:focus, .dark select:focus, .dark button:focus {
+    box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+}
+
+* {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+#tabs-container {
+    min-height: 40px;
+}
+
+.tab-active {
+    position: relative;
+}
+
+.tab-active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: currentColor;
+}
+
+/* Animações suaves */
+.transition-all {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Melhorias visuais */
+.rounded-xl {
+    border-radius: 1rem;
+}
+
+/* Efeito de hover mais suave */
+.hover\:bg-gray-100:hover {
+    background-color: rgba(243, 244, 246, 0.8);
+}
+
+.dark .hover\:bg-gray-700:hover {
+    background-color: rgba(55, 65, 81, 0.8);
+}
+
+/* Sombras mais sutis */
+.shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.dark .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos do botão de lock */
+#lock-button {
+    min-width: 120px;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+#lock-button:hover {
+    border-color: currentColor;
+}
+
+#lock-button.locked {
+    background-color: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.2);
+    color: rgb(16, 185, 129);
+}
+
+.dark #lock-button.locked {
+    background-color: rgba(16, 185, 129, 0.2);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: rgb(52, 211, 153);
+}
+
+/* Animações de mensagem */
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes messagePulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.message-new {
+    animation: messageSlideIn 0.3s ease-out forwards;
+}
+
+.message-loading {
+    animation: messagePulse 1.5s ease-in-out infinite;
+}
+
+/* Botão desabilitado com estilo */
+.button-disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    position: relative;
+}
+
+.button-disabled::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Input desabilitado */
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
+
+input:disabled {
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+input:disabled::placeholder {
+    color: rgba(156, 163, 175, 0.9);
+}
+
+.dark input:disabled::placeholder {
+    color: rgba(156, 163, 175, 0.7);
+}
+
+/* Melhorar a aparência do input desabilitado */
+input:disabled {
+    background-image: linear-gradient(45deg, 
+        rgba(200, 200, 200, 0.1) 25%, 
+        transparent 25%, 
+        transparent 50%, 
+        rgba(200, 200, 200, 0.1) 50%, 
+        rgba(200, 200, 200, 0.1) 75%, 
+        transparent 75%, 
+        transparent
+    );
+    background-size: 3px 3px;
+}
+
+.dark input:disabled {
+    background-image: linear-gradient(45deg, 
+        rgba(50, 50, 50, 0.2) 25%, 
+        transparent 25%, 
+        transparent 50%, 
+        rgba(50, 50, 50, 0.2) 50%, 
+        rgba(50, 50, 50, 0.2) 75%, 
+        transparent 75%, 
+        transparent
+    );
+}
+
+/* Estilos para markdown */
+.markdown-body {
+    color: inherit;
+    background-color: transparent;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.markdown-body code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(175, 184, 193, 0.1);
+    border-radius: 6px;
+}
+
+.dark .markdown-body code {
+    background-color: rgba(30, 41, 59, 0.5);
+    color: #94a3b8;
+}
+
+.markdown-body pre code {
+    padding: 1em;
+    border-radius: 8px;
+    display: block;
+    overflow-x: auto;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+    padding-left: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.markdown-body blockquote {
+    padding: 0 1em;
+    color: #4b5563;
+    border-left: 0.25em solid #d0d7de;
+    margin: 0.5em 0;
+}
+
+.dark .markdown-body blockquote {
+    color: #94a3b8;
+    border-left-color: #3f3f46;
+}
+
+.message-ai {
+    max-width: 90% !important;
+}
+
+/* Ajustes para modo escuro */
+.dark .markdown-body {
+    color: #e2e8f0;
+}
+
+/* Ajuste para mensagens da IA no modo escuro */
+.dark .bg-gray-100 {
+    background-color: #1e293b;
+}
+
+/* Ajustes para títulos no modo escuro */
+.dark .markdown-body h1,
+.dark .markdown-body h2,
+.dark .markdown-body h3,
+.dark .markdown-body h4 {
+    color: #f1f5f9;
+}
+
+/* Ajustes para listas no modo escuro */
+.dark .markdown-body ul,
+.dark .markdown-body ol {
+    color: #e2e8f0;
+}
+
+/* Ajustes para código inline no modo escuro */
+.markdown-body code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(175, 184, 193, 0.1);
+    border-radius: 6px;
+}
+
+/* Ajustes para blocos de código no modo escuro */
+.dark .markdown-body pre {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+}
+
+.dark .markdown-body pre code {
+    color: #e2e8f0;
+}
+
+/* Ajustes para links no modo escuro */
+.dark .markdown-body a {
+    color: #60a5fa;
+}
+
+.dark .markdown-body a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+/* Melhorar contraste para elementos importantes */
+.dark .markdown-body strong {
+    color: #f1f5f9;
+}
+
+.dark .markdown-body em {
+    color: #e2e8f0;
+}
+
+/* Ajuste para tabelas no modo escuro */
+.dark .markdown-body table {
+    border-color: #334155;
+}
+
+.dark .markdown-body table tr {
+    background-color: #1e293b;
+    border-top: 1px solid #334155;
+}
+
+.dark .markdown-body table tr:nth-child(2n) {
+    background-color: #0f172a;
+}
+
+.dark .markdown-body table td,
+.dark .markdown-body table th {
+    border-color: #334155;
+}
+
+/* Modal animations */
+#settings-modal > div {
+    transition: all 0.2s ease-out;
+}
+
+#settings-modal.hidden {
+    display: none;
+}
+
+#settings-modal > div {
+    transform: scale(0.95);
+    opacity: 0;
+}
+
+#settings-modal > div.scale-100 {
+    transform: scale(1);
+}
+
+#settings-modal > div.opacity-100 {
+    opacity: 1;
+}
+
+/* Animação suave para o logo */
+.logo-text {
+    background: linear-gradient(
+        to right,
+        #6366f1,
+        #8b5cf6,
+        #6366f1
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shine 3s linear infinite;
+}
+
+.logo-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-container::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shine-effect 3s infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+@keyframes shine-effect {
+    from {
+        transform: rotate(45deg) translate(-100%, -100%);
+    }
+    to {
+        transform: rotate(45deg) translate(100%, 100%);
+    }
+}
+
+/* Navbar Styles */
+header {
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.logo-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Melhorar a aparência dos links da navbar */
+nav a {
+    position: relative;
+    font-weight: 500;
+    padding: 0.5rem 0;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Ajustar z-index para evitar sobreposição */
+.logo-container, nav, #theme-toggle {
+    z-index: 2;
+}
+
+/* Melhorar aparência dos botões na navbar */
+.navbar-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: currentColor;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.1;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.navbar-button:hover::before {
+    width: 100%;
+    height: 100%;
+} 
